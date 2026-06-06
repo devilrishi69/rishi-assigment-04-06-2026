@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Login</title>
+
 <style>
-   *{
+
+*{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -26,7 +28,6 @@ body{
     border-radius:6px;
     padding:35px 30px;
     box-shadow:0 2px 10px rgba(0,0,0,0.2);
-
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -49,14 +50,9 @@ body{
     border:1px solid #b09ec0;
     padding:28px 16px;
     margin-bottom:25px;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
 }
 
 .form-group{
-    width:100%;
     margin-bottom:15px;
 }
 
@@ -88,20 +84,38 @@ input::placeholder{
     color:white;
     font-size:20px;
     font-weight:bold;
-}
-
-.login-btn{
     background:#7d72a3;
     margin-bottom:10px;
-}
-
-.register-btn{
-    background:#9b91b5;
 }
 
 .btn:hover{
     opacity:0.9;
 }
+
+form{
+    width:100%;
+}
+
+.back-link{
+    display:block;
+    width:100%;
+    text-align:center;
+    text-decoration:none;
+    background:#42154d;
+    color:white;
+    padding:10px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.back-link:hover{
+    opacity:0.9;
+}
+
+.admin-link{
+    margin-top:25px;
+}
+
 </style>
 </head>
 <body>
@@ -109,10 +123,10 @@ input::placeholder{
 <div class="login-container">
 
     <div class="welcome-box">
-        WELCOME
+        USER LOGIN
     </div>
 
-    <form action="login_process.php" method="POST">
+    <form action="user_login_process.php" method="POST">
 
         <div class="form-box">
 
@@ -120,7 +134,7 @@ input::placeholder{
                 <input
                     type="text"
                     name="username"
-                    placeholder="USER ID"
+                    placeholder="USERNAME"
                     required>
             </div>
 
@@ -134,17 +148,19 @@ input::placeholder{
 
         </div>
 
-        <button type="submit" class="btn login-btn">
+        <button type="submit" class="btn">
             LOGIN
         </button>
 
-        <button type="button"
-onclick="window.location.href='register.php'"
-class="btn register-btn">
-    REGISTER
-</button>
-
     </form>
+
+    <a href="register.php" class="back-link">
+        REGISTER
+    </a>
+
+    <a href="index.php" class="back-link admin-link">
+        ADMIN LOGIN
+    </a>
 
 </div>
 

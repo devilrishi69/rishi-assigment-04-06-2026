@@ -36,13 +36,146 @@ $row = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
 
+
+ <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Georgia, serif;
+}
+
+body{
+    background:#b8a6c0;
+    min-height:100vh;
+}
+
+/* Navbar */
+
+.navbar{
+    background:#2b022f;
+    color:white;
+    height:85px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+}
+
+.navbar h1{
+    font-size:42px;
+}
+
+/* Main Form Card */
+
+.container{
+    width:650px;
+    margin:40px auto;
+    background:#d9d9d9;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.container h2{
+    text-align:center;
+    color:#2b022f;
+    margin-bottom:25px;
+    font-size:30px;
+}
+
+/* Form */
+
+.form-group{
+    margin-bottom:18px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+    color:#2b022f;
+    font-size:16px;
+}
+
+input,
+select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:5px;
+    background:#ece7ef;
+    font-size:15px;
+}
+
+input:focus,
+select:focus{
+    outline:none;
+    box-shadow:0 0 5px rgba(66,21,77,0.5);
+}
+
+/* Buttons */
+
+.btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:5px;
+    background:#42154d;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+
+.btn:hover{
+    opacity:0.9;
+}
+
+.back-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    text-decoration:none;
+    background:#2b022f;
+    color:white;
+    padding:12px;
+    border-radius:5px;
+    font-weight:bold;
+    margin-top:12px;
+}
+
+.back-btn:hover{
+    opacity:0.9;
+}
+
+/* Photo Preview */
+
+.current-photo{
+    display:block;
+    width:140px;
+    height:140px;
+    object-fit:cover;
+    border-radius:10px;
+    margin:0 auto 20px auto;
+    border:3px solid #42154d;
+
+
+    
+}
+
+</style>
+
     
 </head>
 <body>
 
 <div class="container">
 
-    <h2>Edit User</h2>
+ <h2>Edit User Profile</h2>
 
     <form action="update_user.php" method="POST">
 
@@ -103,7 +236,7 @@ $row = mysqli_fetch_assoc($result);
                    required>
         </div>
 
-        <button type="submit">Update User</button>
+        <button type="submit" class="btn">Update User</button>
 
     </form>
 

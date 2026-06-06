@@ -10,7 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     $class = mysqli_real_escape_string($conn, $_POST['class']);
     $dob = mysqli_real_escape_string($conn, $_POST['dob']);
 
-    
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+ $password = mysqli_real_escape_string($conn, $_POST['password']);
+
     $photo_name = $_FILES['photo']['name'];
     $photo_tmp = $_FILES['photo']['tmp_name'];
 
@@ -23,10 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if(move_uploaded_file($photo_tmp, $upload_path))
     {
         $sql = "INSERT INTO users
-                (name, student_id, gender, class, photo, dob)
-                VALUES
-                ('$name', '$student_id', '$gender', '$class', '$new_photo_name', '$dob')";
-
+        (name, student_id, gender, class, photo, dob, username, password)
+        VALUES
+        ('$name', '$student_id', '$gender', '$class', '$new_photo_name', '$dob', '$username', '$password')";
         if(mysqli_query($conn, $sql))
         {
             header("Location: view_users.php");
