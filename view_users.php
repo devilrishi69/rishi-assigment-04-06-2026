@@ -21,7 +21,7 @@ $result = mysqli_query($conn, $sql);
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>View Profiles</title>
 
-<style>
+    <style>
 
 *{
     margin:0;
@@ -140,6 +140,19 @@ img{
     opacity:0.9;
 }
 
+.permission-btn{
+    background:#42154d;
+    color:white;
+    padding:8px 12px;
+    text-decoration:none;
+    border-radius:5px;
+    font-weight:bold;
+}
+
+.permission-btn:hover{
+    opacity:0.9;
+}
+
 .no-data{
     text-align:center;
     font-weight:bold;
@@ -174,6 +187,7 @@ img{
             <th>DOB</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Permissions</th>
         </tr>
 
         <?php
@@ -215,7 +229,14 @@ img{
                    onclick="return confirm('Are you sure you want to delete this user?');">
                    Delete
                 </a>
+        
             </td>
+           <td>
+          <a class="permission-btn"
+          href="manage_permissions.php?id=<?php echo $row['user_id']; ?>">
+         Permissions
+         </a>
+          </td>
 
         </tr>
 
@@ -224,7 +245,7 @@ img{
         }
         else
         {
-            echo "<tr><td colspan='9' class='no-data'>No Users Found</td></tr>";
+            echo "<tr><td colspan='10'>No Users Found</td></tr>";
         }
         ?>
 
