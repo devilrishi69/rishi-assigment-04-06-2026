@@ -20,6 +20,11 @@ if(mysqli_num_rows($result) == 1)
     $_SESSION['user_id'] = $user['user_id'];
     $_SESSION['username'] = $user['username'];
 
+    $_SESSION['can_view_all'] = $user['can_view_all'];
+    $_SESSION['can_add_user'] = $user['can_add_user'];
+
+    $_SESSION['role'] = 'user';
+
     header("Location: user_home.php");
     exit();
 }

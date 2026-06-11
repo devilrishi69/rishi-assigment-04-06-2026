@@ -1,5 +1,31 @@
 <?php
 
+
+session_start();
+
+
+if(isset($_SESSION['username']) && !isset($_SESSION['user_id']))
+{
+
+}
+
+
+elseif(isset($_SESSION['user_id']))
+{
+    if($_SESSION['can_add_user'] != 1)
+    {
+        die("Access Denied");
+    }
+}
+
+
+else
+{
+    header("Location: index.php");
+    exit();
+}
+
+
 include("db_connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST")

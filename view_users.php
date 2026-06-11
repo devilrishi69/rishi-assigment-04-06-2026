@@ -1,13 +1,31 @@
 <?php
 
-session_start();
 
-if (!isset($_SESSION['username'])) {
+session_start();
+$is_admin = isset($_SESSION['role']) && $_SESSION['role'] == 'admin';
+
+
+if(isset($_SESSION['username']) && !isset($_SESSION['user_id']))
+{
+    include("db_connect.php");
+}
+
+
+elseif(isset($_SESSION['user_id']))
+{
+    if($_SESSION['can_view_all'] != 1)
+    {
+        die("Access Denied");
+    }
+
+    include("db_connect.php");
+}
+
+else
+{
     header("Location: index.php");
     exit();
 }
-
-include("db_connect.php");
 
 $sql = "SELECT * FROM users ORDER BY user_id DESC";
 $result = mysqli_query($conn, $sql);
@@ -152,7 +170,23 @@ img{
 .permission-btn:hover{
     opacity:0.9;
 }
+.yes-badge{
+    background:#28a745;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
 
+.no-badge{
+    background:#dc3545;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
 .no-data{
     text-align:center;
     font-weight:bold;
@@ -178,6 +212,7 @@ img{
     <table>
 
         <tr>
+        <?php if($is_admin){ ?>
             <th>ID</th>
             <th>Photo</th>
             <th>Name</th>
@@ -187,7 +222,10 @@ img{
             <th>DOB</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>View Access</th>
+            <th>Add Access</th>
             <th>Permissions</th>
+            <?php } ?>
         </tr>
 
         <?php
@@ -215,14 +253,16 @@ img{
             <td><?php echo $row['class']; ?></td>
 
             <td><?php echo $row['dob']; ?></td>
-
+         
+            <?php if($is_admin){ ?>
             <td>
                 <a class="edit-btn"
                    href="edit_user.php?id=<?php echo $row['user_id']; ?>">
                    Edit
                 </a>
             </td>
-
+            <?php } ?>
+            <?php if($is_admin){ ?>
             <td>
                 <a class="delete-btn"
                    href="delete_user.php?id=<?php echo $row['user_id']; ?>"
@@ -231,14 +271,43 @@ img{
                 </a>
         
             </td>
-           <td>
-          <a class="permission-btn"
-          href="manage_permissions.php?id=<?php echo $row['user_id']; ?>">
-         Permissions
-         </a>
-          </td>
+            <?php } ?>
+            <td>
+<?php
+if($row['can_view_all'] == 1)
+{
+    echo "<span class='yes-badge'>YES</span>";
+}
+else
+{
+    echo "<span class='no-badge'>NO</span>";
+}
+?>
+</td>
 
-        </tr>
+<td>
+<?php
+if($row['can_add_user'] == 1)
+{
+    echo "<span class='yes-badge'>YES</span>";
+}
+else
+{
+    echo "<span class='no-badge'>NO</span>";
+}
+?>
+</td>
+
+<?php if($is_admin){ ?>
+
+<td>
+<a class="permission-btn"
+href="manage_permissions.php?id=<?php echo $row['user_id']; ?>">
+Permissions
+</a>
+</td>
+
+<?php } ?>
 
         <?php
             }

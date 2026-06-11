@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             WHERE username='$username' 
             AND password='$password'";
 
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($conn, $sql);    
 
     if(mysqli_num_rows($result) == 1)
     {
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $_SESSION['admin_id'] = $row['admin_id'];
         $_SESSION['username'] = $row['username'];
+        $_SESSION['role'] = 'admin';    
 
         header("Location: home.php");
         exit();

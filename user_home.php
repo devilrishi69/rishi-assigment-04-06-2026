@@ -166,12 +166,24 @@ body{
         </div>
 
         <a href="user_edit.php" class="btn">
-            EDIT PROFILE
-        </a>
+    EDIT PROFILE
+</a>
 
-        <a href="user_logout.php" class="btn logout">
-            LOGOUT
-        </a>
+<?php if($_SESSION['can_view_all'] == 1) { ?>
+    <a href="view_users.php" class="btn">
+        VIEW USERS
+    </a>
+<?php } ?>
+
+<?php if($_SESSION['can_add_user'] == 1) { ?>
+    <a href="add_user.php" class="btn">
+        ADD USER
+    </a>
+<?php } ?>
+
+<a href="user_logout.php" class="btn logout">
+    LOGOUT
+</a>
 
     </div>
 
